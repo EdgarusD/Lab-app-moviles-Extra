@@ -1,0 +1,18 @@
+img {
+    width: 300px;
+}
+
+.destino-abreviado{
+    size: 16px;
+}
+
+.formulario{
+    width: 50%;
+}
+.texto-formulario{
+    color: black;
+}
+
+ion-alert.custom-alert {
+    --backdrop-opacity: 0.2;
+  }

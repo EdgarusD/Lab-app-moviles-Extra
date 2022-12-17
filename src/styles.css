@@ -77,6 +77,10 @@ ion-searchbar {
     --ion-background-color: white;
 }
 
+ion-alert.custom-alert {
+    background-color: #03071e;
+  }
+
 .resultados {
     margin: 0 15px;
 }
@@ -84,7 +88,7 @@ ion-searchbar {
 .destino-abreviado {
     color:rgba(13, 18, 114, 0.95);
     font-weight: 700;
-    font-size: 60px;
+    font-size: 30px;
 }
 
 .destino-ciudad-aeroperto {

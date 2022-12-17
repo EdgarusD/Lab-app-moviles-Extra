@@ -1,26 +1,257 @@
 <div class="confirmacion">
-    <ion-card>
-        <ion-card-header>
-            <ion-avatar>
-                <ion-img src="assets/jose.jpg"></ion-img>
-            </ion-avatar>
-        </ion-card-header>
-        <ion-card-content>
-            <div class="ida">
-                <p>Vuelo de Ida</p>
-            </div>
-           <div class="regreso">
-            <p>Vuelo de Regreso</p>
-            
-           </div>
-           <div class="vuelo">
-            <p>Vuelo:</p>
-            <p>CA1712</p>
-           </div>
-           <div class="asiento">
-            <p>Asiento:</p>
-            <p>B13</p>
-           </div>
-        </ion-card-content>
-    </ion-card>
+  <ion-card>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-grid>
+          <ion-col>
+            <h1>Seleccione un pais</h1>
+          </ion-col>
+          <ion-col
+            sizeSm="6"
+            sizeMd="6"
+            sizeLg="12"
+            *ngFor="let pais of paises"
+          >
+            <ion-card (click)="mostrarLocalidad(pais.nombre)">
+              <img src="../../assets/img-paises/{{ pais.image }}" />
+              <h2>{{ pais.nombre }}</h2>
+            </ion-card>
+          </ion-col>
+        </ion-grid>
+      </ion-slide>
+      <ion-slide>
+        <ion-grid>
+          <h1>vuelos para {{ lugarDestino.nombre }}, Seleccione un vuelo</h1>
+          <ion-col sizeSm="6" sizeMd="6" sizeLg="12">
+            <ion-card
+              class="resultados"
+              sizeSm="6"
+              sizeMd="6"
+              sizeLg="12"
+              *ngFor="let vuelo of vuelos"
+              (click)="mostrarHorario(vuelo.destino)"
+            >
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <h3 size="4" class="destino-abreviado">NYC</h3>
+                  </ion-col>
+                  <ion-col class="destino-ciudad-aeroperto">
+                    <ion-text>{{ vuelo.destino }}</ion-text>
+                    <ion-text>John F. Kennedy Airport</ion-text>
+                    <!--Nombre de Aeropuerto-->
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+            <ion-card>
+              <ion-row
+                ><ion-col
+                  ><ion-text
+                    >Vuelos en horarios disponibles para:
+                    {{ nombrePais }}</ion-text
+                  ></ion-col
+                ></ion-row
+              >
+              <ion-row>
+                <ion-col
+                  *ngFor="let horario of horarios"
+                  (click)="seleccionHora(horario)"
+                  >{{ horario }}</ion-col
+                >
+              </ion-row>
+            </ion-card>
+          </ion-col>
+        </ion-grid>
+      </ion-slide>
+      <ion-slide>
+        <div class="formulario">
+          <form
+            #formulario
+            [formGroup]="crearVuelo"
+            (ngSubmit)="comprarVuelo()"
+          >
+            <ion-row>
+              <ion-col><ion-text>Detalles del pasajero</ion-text></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><ion-text></ion-text></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> Nombre: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="nombre"
+                    formControlName="nombre"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> apellido: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="apellido"
+                    formControlName="apellido"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> pasaporte: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="pasaporte"
+                    formControlName="pasaporte"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" class="texto-formulario"
+                  >generar boleto</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </form>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="formulario">
+          <form
+            #formulario
+            [formGroup]="crearVuelo"
+            (ngSubmit)="confirmarVuelo()"
+          >
+            <ion-row>
+              <ion-col
+                ><ion-text>Detalles del Vuelo y pasajero</ion-text></ion-col
+              >
+            </ion-row>
+            <ion-row>
+              <ion-col><ion-text></ion-text></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> Nombre: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="nombre"
+                    formControlName="nombre"
+                    value="{{ crearVuelo.value.nombre }}"
+                    readonly
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> apellido: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="apellido"
+                    formControlName="apellido"
+                    value="{{ crearVuelo.value.apellido }}"
+                    readonly
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> pasaporte: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="pasaporte"
+                    formControlName="pasaporte"
+                    value="{{ crearVuelo.value.pasaporte }}"
+                    readonly
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> Pais: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="pasaporte"
+                    formControlName="pasaporte"
+                    value="{{ paisVuelo }}"
+                    readonly
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario"> Estado: </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="pasaporte"
+                    formControlName="pasaporte"
+                    value="{{ estadoVuelo }}"
+                    readonly
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label class="texto-formulario">
+                    Hora de vuelo:
+                  </ion-label>
+                  <ion-input
+                    class="texto-formulario"
+                    type="text"
+                    required
+                    name="pasaporte"
+                    formControlName="pasaporte"
+                    value="{{ horaVuelo }}"
+                    readonly
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" class="texto-formulario"
+                  >confirmar vuelo</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </form>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
 </div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lab-app-ext": {
+      "hosting": {
+        "contosoAirlines": [
+          "lab-app-ext"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lab-app-ext"
+  }
+}

@@ -161,8 +161,21 @@
               "browserTarget": "contosoAirlines:build:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "contosoAirlines:build:production",
+            "firebaseProject": "lab-app-ext",
+            "firebaseHostingSite": "lab-app-ext"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

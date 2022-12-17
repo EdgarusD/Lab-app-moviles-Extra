@@ -1,0 +1,58 @@
+{
+  "data": [
+    {
+      "nombre": "Mexico",
+      "image": "mexico.jpg",
+      "viajes": [
+        {
+          "destino": "Guadalajara",
+          "hora": ["06:30", "12:00", "08:00"]
+        },
+        {
+          "destino": "Ciudad de Mexico",
+          "hora": ["13:30", "15:00"]
+        },
+        {
+          "destino": "Monterrey",
+          "hora": ["13:00", "18:30"]
+        }
+      ]
+    },
+    {
+      "nombre": "Estados Unidos",
+      "image": "estados_unidos.jpg",
+      "viajes": [
+        {
+          "destino": "Nueva York",
+          "hora": ["22:30", "13:00", "08:30"]
+        },
+        {
+          "destino": "San Francisco",
+          "hora": ["18:30", "22:00"]
+        },
+        {
+          "destino": "Los Angeles",
+          "hora": ["07:00", "09:30"]
+        }
+      ]
+    },
+    {
+      "nombre": "Canada",
+      "image": "canada.jpg",
+      "viajes": [
+        {
+          "destino": "Toronto",
+          "hora": ["22:30", "13:00", "08:30"]
+        },
+        {
+          "destino": "Vancouver",
+          "hora": ["18:30", "22:00"]
+        },
+        {
+          "destino": "Montreal",
+          "hora": ["07:00", "09:30"]
+        }
+      ]
+    }
+  ]
+}
